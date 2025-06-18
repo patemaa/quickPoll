@@ -24,7 +24,7 @@
         <div class="space-y-2 mb-4">
             @foreach ($poll->options as $option)
                 <div class="flex items-center">
-                    <input type="radio" name="option" id="option-{{ $option->id }}" value="{{ $option->id }}" class="mr-2" required>
+                    <input type="radio" name="option_id" value="{{ $option->id }}" class="mr-2" required>
                     <label for="option-{{ $option->id }}">{{ $option->text }}</label>
                 </div>
             @endforeach

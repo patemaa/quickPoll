@@ -8,11 +8,15 @@ class Vote extends Model
 {
     protected $table = 'polls_votes';
 
-    protected $fillable = [
-        'ipAddress',
-    ];
-    public function option()
+    protected $fillable = ['poll_id', 'option_id', 'ip_address'];
+
+    public function poll()
     {
-        return $this->belongsTo(Option::class);
+        return $this->belongsTo(Poll::class, 'poll_id');
+    }
+
+    public function options()
+    {
+        return $this->belongsTo(Option::class, 'option_id');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use App\Models\Poll;
 use App\Models\Option;
@@ -21,12 +22,12 @@ class PollController extends Controller
     {
         $options = array_filter($request->input('options'), fn($opt) => trim($opt) !== '');
 
-        $request->merge(['options' => $options]);
+        $request->merge(['polls_options' => $options]);
 
         $request->validate([
             'question' => 'required|string|max:255',
-            'options' => 'required|array|min:2|max:4',
-            'options.*' => 'required|string|max:100'
+            'polls_options' => 'required|array|min:2|max:4',
+            'polls_options.*' => 'required|string|max:100'
         ]);
 
 
@@ -65,41 +66,55 @@ class PollController extends Controller
     }
 
     // Oy kullan
-    public function vote(Request $request, $id)
+    public function vote(Request $request, $pollId)
     {
         $request->validate([
-            'option' => 'required|exists:options,id'
+            'option_id' => 'required|exists:polls_options,id'
         ]);
 
-        $option = Option::findOrFail($request->option);
-        $poll = Poll::findOrFail($id);
+        $option = Option::findOrFail($request->input('option_id'));
+        $poll = Poll::findOrFail($pollId);
 
         $userIp = FacadeRequest::ip();
 
         // Aynı IP'den oy verildi mi?
-        $alreadyVoted = $poll->options()
-            ->whereHas('votes', function ($query) use ($userIp) {
-                $query->where('ip_address', $userIp);
-            })->exists();
+        $alreadyVoted = Vote::where('poll_id', $poll->id)
+            ->where('ip_address', $userIp)
+            ->exists();
 
         if ($alreadyVoted) {
-            return redirect()->route('polls.results', $poll->id);
+            return redirect()->route('polls.results', $poll->id)
+                ->with('error', 'Bu anket için zaten oy verdiniz.');
         }
 
         // IP'yi kayıt eden vote tablosu kullanılmalı
-        $option->votes()->create([
-            'ip_address' => $userIp
+        Vote::create([
+            'poll_id' => $poll->id,
+            'option_id' => $option->id,
+            'ip_address' => $userIp,
         ]);
 
-        return redirect()->route('polls.results', $poll->id);
+        return redirect()->route('polls.results', $poll->id)
+            ->with('success', 'Oyunuz başarıyla kaydedildi.');
     }
 
     // Sonuçları göster
     public function results($id)
     {
-        $poll = Poll::with('options')->findOrFail($id);
+        $poll = Poll::with('options.votes')->findOrFail($id);
         $totalVotes = $poll->options->sum(fn($opt) => $opt->votes->count());
 
         return view('polls.results', compact('poll', 'totalVotes'));
+    }
+
+    public function redirect(Request $request)
+    {
+        $request->validate([
+            'pollLink' => 'required|string',
+        ]);
+
+        $input = trim($request->pollLink);
+
+        return redirect()->to($input);
     }
 }
