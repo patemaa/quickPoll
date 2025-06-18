@@ -13,14 +13,16 @@
     <h2 class="text-lg font-semibold mb-2">{{ $poll->question }}</h2>
 
     @php
-    $total = $totalVotes > 0 ? $totalVotes : 1; // sıfıra bölme önlemi
+        $total = $totalVotes > 0 ? $totalVotes : 1; // sıfıra bölme önlemi
+        $colors = ['#6366f1', '#60a5fa', '#34d399', '#fbbf24']; // renk dizisi
     @endphp
 
     <ul class="mb-6">
-        @foreach ($poll->options as $option)
+        @foreach ($poll->options as $index => $option)
             @php
                 $voteCount = $option->votes->count();
                 $percent = round(($voteCount / $total) * 100, 1);
+                $barColor = $colors[$index % count($colors)];
             @endphp
             <li class="mb-2">
                 <div class="flex justify-between">
@@ -28,7 +30,7 @@
                     <span>{{ $voteCount }} oy (%{{ $percent }})</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded h-3 mt-1">
-                    <div class="bg-indigo-600 h-3 rounded" style="width: {{ $percent }}%"></div>
+                    <div class="h-3 rounded" style="width: {{ $percent }}%; background-color: {{ $barColor }}"></div>
                 </div>
             </li>
         @endforeach
@@ -46,11 +48,16 @@
                 datasets: [{
                     label: 'Oy Dağılımı',
                     data: {!! json_encode($poll->options->map(fn($opt) => $opt->votes->count())) !!},
-                    backgroundColor: ['#6366f1', '#60a5fa', '#34d399', '#fbbf24'],
+                    backgroundColor: {!! json_encode($colors) !!},
                 }]
             },
             options: {
-                responsive: true
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
             }
         });
     </script>

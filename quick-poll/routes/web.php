@@ -15,8 +15,6 @@ Route::get('/', function () {
 //    return view('auth/register');
 //});
 
-
-//Route::get('/', [PollController::class, '']);
 Route::get('/create', [PollController::class, 'create']);
 Route::post('/store', [PollController::class, 'store'])->name('polls.store');
 Route::get('/polls/{slug}', [PollController::class, 'show'])->name('polls.show');
