@@ -54,7 +54,11 @@
 
 <script>
     function copyLink() {
-        const url = window.location.href;
+        let url = window.location.href;
+
+        if (url.endsWith('/admin')) {
+            url = url.replace('/admin', '');
+        }
 
         navigator.clipboard.writeText(url).then(function () {
             const msg = document.getElementById("copy-msg");
