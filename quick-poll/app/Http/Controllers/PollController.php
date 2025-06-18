@@ -31,7 +31,6 @@ class PollController extends Controller
             'polls_options.*' => 'required|string|max:100'
         ]);
 
-
         $poll = Poll::create([
             'question' => $request->question,
             'slug' => Str::slug($request->question)
@@ -46,7 +45,6 @@ class PollController extends Controller
 
         return redirect()->route('polls.admin', $poll->id);
     }
-
 
     // Anketi göster (oy verme ekranı)
     public function show($id)
@@ -123,11 +121,11 @@ class PollController extends Controller
     {
         $poll = Poll::with('options')->findOrFail($id);
 
-        $userIp = FacadeRequest::ip();
-        $hasVoted = Option::where('poll_id', $poll->id)
-            ->whereHas('votes', function ($query) use ($userIp) {
-                $query->where('ip_address', $userIp);
-            })->exists();
+//        $userIp = FacadeRequest::ip();
+//        $hasVoted = Option::where('poll_id', $poll->id)
+//            ->whereHas('votes', function ($query) use ($userIp) {
+//                $query->where('ip_address', $userIp);
+//            })->exists();
 
 //        if ($hasVoted) {
 //            return redirect()->route('polls.results', $poll->id);
@@ -169,5 +167,4 @@ class PollController extends Controller
 
         return redirect()->route('polls.admin',  ['slug' => $poll->id])->with('success', 'Anket başarıyla güncellendi.');
     }
-
 }

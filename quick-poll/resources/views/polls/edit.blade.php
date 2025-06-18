@@ -35,7 +35,7 @@
                        class="w-full border border-gray-300 rounded p-2 mb-2"
                        placeholder="Seçenek {{ $i + 1 }}"
                        value="{{ old('options.' . $i, $option->text) }}"
-                       required>
+                       @if($i < 2) required @endif>
             @endforeach
 
             @for ($i = $poll->options->count(); $i < 4; $i++)
