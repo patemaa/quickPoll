@@ -24,3 +24,7 @@ Route::post('/polls/{slug}/vote', [PollController::class, 'vote'])->name('polls.
 Route::get('/polls/{slug}/results', [PollController::class, 'results'])->name('polls.results');
 
 Route::post('/polls/redirect', [PollController::class, 'redirect'])->name('polls.redirect');
+
+Route::get('/polls/{slug}/admin', [PollController::class, 'admin'])->name('polls.admin');
+
+Route::get('/polls/{slug}/edit', [PollController::class, 'edit'])->name('polls.edit');

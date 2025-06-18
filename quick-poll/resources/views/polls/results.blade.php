@@ -13,7 +13,7 @@
     <h2 class="text-lg font-semibold mb-2">{{ $poll->question }}</h2>
 
     @php
-        $total = $totalVotes > 0 ? $totalVotes : 1; // sıfıra bölme önlemi
+    $total = $totalVotes > 0 ? $totalVotes : 1; // sıfıra bölme önlemi
     @endphp
 
     <ul class="mb-6">

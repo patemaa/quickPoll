@@ -2,12 +2,14 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Oy Ver</title>
+    <title>Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
 <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h1 class="text-xl font-bold mb-4">Anket: {{ $poll->question }}</h1>
+    <h1 class="text-xl font-bold mb-4">Anket</h1>
+
+    <h5 class="text-xl font-bold mb-4">Soru: {{ $poll->question }}</h5>
 
     @if ($errors->any())
         <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
@@ -24,22 +26,23 @@
         <div class="space-y-2 mb-4">
             @foreach ($poll->options as $option)
                 <div class="flex items-center">
-                    <input type="radio" name="option_id" value="{{ $option->id }}" class="mr-2" required>
-                    <label for="option-{{ $option->id }}">{{ $option->text }}</label>
+                    <ol>
+                        <li> ✩ {{ $option->text }}</li>
+                    </ol>
                 </div>
             @endforeach
         </div>
 
         <div class="flex gap-2">
-            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
-                Oy Ver
-            </button>
+            <a href="{{ route('polls.edit', $poll->id) }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Edit</a>
 
-            <button type="button" onclick="copyLink()" class=" bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+            <button type="button" onclick="copyLink()"
+                    class=" bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
                 Linki Kopyala
             </button>
 
-            <a href="{{ route('polls.results', $poll->id) }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Oy Takibi</a>
+            <a href="{{ route('polls.results', $poll->id) }}"
+               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Oy Takibi</a>
 
             <a href="/" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Ana sayfaya geri dön</a>
         </div>

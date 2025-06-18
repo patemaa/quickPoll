@@ -65,6 +65,23 @@ class PollController extends Controller
         return view('polls.show', compact('poll'));
     }
 
+    public function admin($id)
+    {
+        $poll = Poll::with('options')->findOrFail($id);
+
+        $userIp = FacadeRequest::ip();
+        $hasVoted = Option::where('poll_id', $poll->id)
+            ->whereHas('votes', function ($query) use ($userIp) {
+                $query->where('ip_address', $userIp);
+            })->exists();
+
+//        if ($hasVoted) {
+//            return redirect()->route('polls.results', $poll->id);
+//        }
+
+        return view('polls.admin', compact('poll'));
+    }
+
     // Oy kullan
     public function vote(Request $request, $pollId)
     {
