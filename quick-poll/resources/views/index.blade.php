@@ -6,11 +6,11 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="">
+<body class="h-full">
 <div class="grid grid-flow-col justify-items-end mt-6 mr-6">
-        <a href="/create"
-           class=" justify-items-end border border-indigo-600 bg-indigo-600 justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition duration-300">
-            Create Poll</a>
+    <a href="/create"
+       class=" justify-items-end border border-indigo-600 bg-indigo-600 justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition duration-300">
+        Create Poll</a>
 
 </div>
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
