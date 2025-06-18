@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sonuçlar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 p-6">
+<div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
+    <h1 class="text-2xl font-bold mb-4">Anket Sonuçları</h1>
+
+    <h2 class="text-lg font-semibold mb-2">{{ $poll->question }}</h2>
+
+    @php
+        $total = $totalVotes > 0 ? $totalVotes : 1; // sıfıra bölme önlemi
+    @endphp
+
+    <ul class="mb-6">
+        @foreach ($poll->options as $option)
+            @php
+                $voteCount = $option->votes->count();
+                $percent = round(($voteCount / $total) * 100, 1);
+            @endphp
+            <li class="mb-2">
+                <div class="flex justify-between">
+                    <span>{{ $option->text }}</span>
+                    <span>{{ $voteCount }} oy (%{{ $percent }})</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded h-3 mt-1">
+                    <div class="bg-indigo-600 h-3 rounded" style="width: {{ $percent }}%"></div>
+                </div>
+            </li>
+        @endforeach
+    </ul>
+
+    {{-- Chart.js grafik --}}
+    <canvas id="resultsChart" width="400" height="200"></canvas>
+
+    <script>
+        const ctx = document.getElementById('resultsChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: {!! json_encode($poll->options->pluck('text')) !!},
+                datasets: [{
+                    label: 'Oy Dağılımı',
+                    data: {!! json_encode($poll->options->map(fn($opt) => $opt->votes->count())) !!},
+                    backgroundColor: ['#6366f1', '#60a5fa', '#34d399', '#fbbf24'],
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+</div>
+</body>
+</html>
