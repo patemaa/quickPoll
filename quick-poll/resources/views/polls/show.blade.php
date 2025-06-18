@@ -34,35 +34,8 @@
             <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
                 Oy Ver
             </button>
-
-            <button type="button" onclick="copyLink()" class=" bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
-                Linki Kopyala
-            </button>
-
-            <a href="{{ route('polls.results', $poll->id) }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Oy Takibi</a>
-
-            <a href="/" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Ana sayfaya geri dön</a>
-        </div>
-        <p id="copy-msg" class="text-sm text-green-600 mt-2 hidden">Link kopyalandı!</p>
-
-
     </form>
 </div>
-
-<script>
-    function copyLink() {
-        const url = window.location.href;
-
-        navigator.clipboard.writeText(url).then(function () {
-            const msg = document.getElementById("copy-msg");
-            msg.classList.remove("hidden");
-
-            setTimeout(() => {
-                msg.classList.add("hidden");
-            }, 2000);
-        });
-    }
-</script>
 
 </body>
 </html>
