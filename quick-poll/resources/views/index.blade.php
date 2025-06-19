@@ -13,26 +13,26 @@
         <h1 class="text-xl font-semibold text-gray-800">Quick Poll</h1>
         <a href="/create"
            class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition duration-300">
-            Create Poll
+            {{ __('messages.create_poll') }}
         </a>
         <a href="{{ route('polls.index') }}"
            class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition duration-300">
-            All Polls
+            {{ __('messages.all_polls') }}
         </a>
     </div>
 
     <form class="space-y-4" action="{{ route('polls.redirect') }}" method="POST">
         @csrf
         <div>
-            <label for="pollLink" class="block text-gray-700 font-medium mb-1">Poll Url</label>
+            <label for="pollLink" class="block text-gray-700 font-medium mb-1">{{ __('messages.poll_url') }}</label>
             <input type="url" name="pollLink" id="pollLink" required
-                   placeholder="Enter the poll's url..."
+                   placeholder="{{ __('messages.url_disclaimer') }}"
                    class="w-full rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600 transition">
         </div>
 
         <button type="submit"
                 class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded transition duration-300">
-            Enter
+            {{ __('messages.enter') }}
         </button>
     </form>
 </div>

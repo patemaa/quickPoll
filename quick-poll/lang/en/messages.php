@@ -1,0 +1,30 @@
+<?php
+
+//en
+
+return [
+    'question:' => 'Question:',
+    'poll' => 'Poll',
+    'edit' => 'Edit',
+    'copy_link' => 'Copy Link',
+    'vote_tracking' => 'Vote Tracking',
+    'homepage' => 'Back to Homepage',
+    'link_copied' => 'Link copied!',
+    'create_poll' => 'Create Poll',
+    'question' => 'Question',
+    'options' => 'Options',
+    'option' => 'Option',
+    'create' => 'Create',
+    'minMaxOption' => '*Please enter between 2 and 4 options.',
+    'edit_poll' => 'Edit Poll',
+    'save' => 'Save',
+    'delete' => 'Delete',
+    'results' => 'Poll Results',
+    'vote' => 'Vote',
+    'poll_list' => 'Poll List',
+    'all_polls' => 'All Polls',
+    'no_polls' => 'No polls have been created yet.',
+    'poll_url' => 'Poll URL:',
+    'url_disclaimer' => 'Enter the polls url...',
+    'enter' => 'Enter',
+];

@@ -11,8 +11,7 @@ class AdminController extends Controller
 {
     public function create()
     {
-        return view('polls.create')
-            ->with('success', 'Anket basariyla olusturuldu.');
+        return view('polls.create');
     }
     public function store(Request $request)
     {
@@ -38,7 +37,7 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect()->route('polls.admin', $poll->id);
+        return redirect()->route('polls.admin', $poll->id) ->with('success', 'Anket basariyla olusturuldu.');
     }
     public function admin($id)
     {

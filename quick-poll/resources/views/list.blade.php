@@ -2,15 +2,15 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Poll List</title>
+    <title>{{ __('messages.poll_list') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
 <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h1 class="text-2xl font-bold mb-4">All Polls</h1>
+    <h1 class="text-2xl font-bold mb-4">{{ __('messages.all_polls') }}</h1>
 
     @if ($polls->isEmpty())
-        <p class="text-gray-600">No polls have been created yet.</p>
+        <p class="text-gray-600">{{ __('messages.no_polls') }}</p>
     @else
         <ul class="space-y-3">
             @foreach ($polls as $poll)
@@ -24,7 +24,7 @@
         </ul>
     @endif
     <div class="flex gap-2 mt-6">
-        <a href="/" class="duration-300 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Back to Homepage</a>
+        <a href="/" class="duration-300 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">{{ __('messages.homepage') }}</a>
     </div>
 </div>
 </body>
