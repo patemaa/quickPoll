@@ -17,7 +17,6 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $options = array_filter($request->input('options'), fn($opt) => trim($opt) !== '');
-
         $request->merge(['polls_options' => $options]);
 
         $request->validate([
@@ -41,7 +40,7 @@ class AdminController extends Controller
         return redirect()->route('polls.admin', $poll->id)->with('success', __('messages.success'));
     }
 
-    public function admin($id)
+    public function admin(int $id)
     {
         $poll = Poll::with('options')->findOrFail($id);
         return view('polls.admin', compact('poll'));
@@ -56,9 +55,7 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $poll = Poll::findOrFail($id);
-
         $options = array_filter($request->input('options'), fn($opt) => trim($opt) !== '');
-
         $request->merge(['polls_options' => $options]);
 
         $request->validate([
@@ -71,7 +68,6 @@ class AdminController extends Controller
             'question' => $request->question,
             'slug' => Str::slug($request->question),
         ]);
-
         $poll->options()->delete();
 
         foreach ($options as $optionText) {
@@ -84,14 +80,12 @@ class AdminController extends Controller
     public function destroy($slug)
     {
         $poll = Poll::where('slug', $slug)->firstOrFail();
-
         foreach ($poll->options as $option) {
             $option->votes()->delete();
             $option->delete();
         }
 
         $poll->delete();
-
-        return redirect('/')->with('success', 'Anket başarıyla silindi.');
+        return redirect('/')->with('destroy_success', __('messages.destroy_success'));
     }
 }
