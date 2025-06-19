@@ -27,3 +27,7 @@ Route::get('/polls/{slug}/admin', [PollController::class, 'admin'])->name('polls
 
 Route::get('/polls/{slug}/edit', [PollController::class, 'edit'])->name('polls.edit');
 Route::post('/polls/{slug}/update', [PollController::class, 'update'])->name('polls.update');
+
+Route::get('/polls', [PollController::class, 'index'])->name('polls.index');
+
+

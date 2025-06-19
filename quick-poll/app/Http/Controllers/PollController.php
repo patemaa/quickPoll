@@ -11,6 +11,13 @@ use Illuminate\Support\Str;
 
 class PollController extends Controller
 {
+    public function index()
+    {
+        $polls = Poll::latest()->get();
+
+        return view('list', compact('polls'));
+    }
+
     // Yeni anket oluşturma formu
     public function create()
     {

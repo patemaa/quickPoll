@@ -27,14 +27,14 @@
             @foreach ($poll->options as $option)
                 <div class="flex items-center">
                     <ol>
-                        <li> ✩ {{ $option->text }}</li>
+                        <li> ・ {{ $option->text }}</li>
                     </ol>
                 </div>
             @endforeach
         </div>
 
         <div class="flex gap-2">
-            <a href="{{ route('polls.edit', $poll->id) }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Edit</a>
+            <a href="{{ route('polls.edit', $poll->id) }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Düzenle</a>
 
             <button type="button" onclick="copyLink()"
                     class=" bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
@@ -44,7 +44,7 @@
             <a href="{{ route('polls.results', $poll->id) }}"
                class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Oy Takibi</a>
 
-            <a href="/" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Ana sayfaya geri dön</a>
+            <a href="/" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Ana Sayfaya Geri Dön</a>
         </div>
         <p id="copy-msg" class="text-sm text-green-600 mt-2 hidden">Link kopyalandı!</p>
 

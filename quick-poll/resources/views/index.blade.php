@@ -15,6 +15,10 @@
            class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition">
             Create Poll
         </a>
+        <a href="{{ route('polls.index') }}"
+           class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition">
+            All Polls
+        </a>
     </div>
 
     <form class="space-y-4" action="{{ route('polls.redirect') }}" method="POST">
