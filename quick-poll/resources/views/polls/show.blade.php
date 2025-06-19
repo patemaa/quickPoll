@@ -7,7 +7,7 @@
 </head>
 <body class="bg-gray-100 p-6">
 <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h1 class="text-xl font-bold mb-4">Anket: {{ $poll->question }}</h1>
+    <h1 class="text-xl font-bold mb-4">Poll: {{ $poll->question }}</h1>
 
     @if ($errors->any())
         <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
@@ -32,7 +32,7 @@
 
         <div class="flex gap-2">
             <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
-                Oy Ver
+                Vote
             </button>
     </form>
 </div>

@@ -2,13 +2,13 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Sonuçlar</title>
+    <title>Results</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-100 p-6">
 <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h1 class="text-2xl font-bold mb-4">Anket Sonuçları</h1>
+    <h1 class="text-2xl font-bold mb-4">Poll Results</h1>
 
     <h2 class="text-lg font-semibold mb-2">{{ $poll->question }}</h2>
 

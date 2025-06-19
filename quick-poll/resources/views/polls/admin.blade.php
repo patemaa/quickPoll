@@ -7,9 +7,9 @@
 </head>
 <body class="bg-gray-100 p-6">
 <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h1 class="text-xl font-bold mb-4">Anket</h1>
+    <h1 class="text-xl font-bold mb-4">Poll</h1>
 
-    <h5 class="text-xl font-bold mb-4">Soru: {{ $poll->question }}</h5>
+    <h5 class="text-xl font-bold mb-4">Question: {{ $poll->question }}</h5>
 
     @if ($errors->any())
         <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
@@ -34,19 +34,19 @@
         </div>
 
         <div class="flex gap-2">
-            <a href="{{ route('polls.edit', $poll->id) }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Düzenle</a>
+            <a href="{{ route('polls.edit', $poll->id) }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Edit</a>
 
             <button type="button" onclick="copyLink()"
                     class=" bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
-                Linki Kopyala
+                Copy Link
             </button>
 
             <a href="{{ route('polls.results', $poll->id) }}"
-               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Oy Takibi</a>
+               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Vote Tracking</a>
 
-            <a href="/" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Ana Sayfaya Geri Dön</a>
+            <a href="/" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Back to Homepage</a>
         </div>
-        <p id="copy-msg" class="text-sm text-green-600 mt-2 hidden">Link kopyalandı!</p>
+        <p id="copy-msg" class="text-sm text-green-600 mt-2 hidden">Link copied!</p>
 
 
     </form>
