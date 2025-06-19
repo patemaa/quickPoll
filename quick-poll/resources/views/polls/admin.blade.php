@@ -6,6 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
+
 <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
     <h1 class="text-xl font-bold mb-4">{{ __('messages.poll') }}</h1>
 
@@ -34,7 +35,8 @@
         </div>
 
         <div class="flex gap-2">
-            <a href="{{ route('polls.edit', $poll->id) }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('messages.edit') }}</a>
+            <a href="{{ route('polls.edit', $poll->id) }}"
+               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('messages.edit') }}</a>
 
             <button type="button" onclick="copyLink()"
                     class=" bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">
@@ -45,10 +47,38 @@
                class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('messages.vote_tracking') }}
             </a>
 
-            <a href="/" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('messages.homepage') }}</a>
+            <a href="/"
+               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('messages.homepage') }}</a>
         </div>
         <p id="copy-msg" class="text-sm text-green-600 mt-2 hidden duration-300">{{ __('messages.link_copied') }}</p>
     </form>
+
+    @if (session('success'))
+        <div class="text-green-700 bg-green-100 p-3 rounded mb-4 mt-5">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if(session('success') || isset($success))
+        <script>
+            setTimeout(function() {
+                window.location.href = "{{ route('polls.admin', $poll->id ?? '') }}";
+            }, 1000);
+        </script>
+    @endif
+
+    @if (session('update_success'))
+        <div class="text-green-700 bg-green-100 p-3 rounded mb-4 mt-5">
+            {{ session('update_success') }}
+        </div>
+    @endif
+    @if(session('update_success') || isset($update_success))
+        <script>
+            setTimeout(function() {
+                window.location.href = "{{ route('polls.admin', $poll->id ?? '') }}";
+            }, 1000);
+        </script>
+    @endif
+
 </div>
 
 <script>

@@ -27,4 +27,9 @@ return [
     'poll_url' => 'Poll URL:',
     'url_disclaimer' => 'Enter the polls url...',
     'enter' => 'Enter',
+    'success' => 'Poll created successfully.',
+    'update_success' => 'Poll updated successfully.',
+    'vote_success' => 'Your vote has been successfully recorded.',
+    'vote_error' => 'You have already voted in this poll.
+'
 ];

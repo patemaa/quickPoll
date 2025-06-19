@@ -14,7 +14,6 @@ class PollController extends Controller
     public function index()
     {
         $polls = Poll::latest()->get();
-
         return view('list', compact('polls'));
     }
     public function show($id)
@@ -44,17 +43,15 @@ class PollController extends Controller
 
         $userIp = FacadeRequest::ip();
 
-        // Aynı IP'den oy verildi mi?
         $alreadyVoted = Vote::where('poll_id', $poll->id)
             ->where('ip_address', $userIp)
             ->exists();
 
         if ($alreadyVoted) {
             return redirect()->route('polls.results', $poll->id)
-                ->with('error', 'Bu anket için zaten oy verdiniz.');
+                ->with('vote_error', __('messages.vote_error'));
         }
 
-        // IP'yi kayıt eden vote tablosu kullanılmalı
         Vote::create([
             'poll_id' => $poll->id,
             'option_id' => $option->id,
@@ -62,7 +59,7 @@ class PollController extends Controller
         ]);
 
         return redirect()->route('polls.results', $poll->id)
-            ->with('success', 'Oyunuz başarıyla kaydedildi.');
+            ->with('vote_success', __('messages.vote_success'));
     }
     public function results($id)
     {
@@ -89,5 +86,4 @@ class PollController extends Controller
 
         return redirect($url);
     }
-
 }

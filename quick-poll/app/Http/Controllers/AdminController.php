@@ -13,6 +13,7 @@ class AdminController extends Controller
     {
         return view('polls.create');
     }
+
     public function store(Request $request)
     {
         $options = array_filter($request->input('options'), fn($opt) => trim($opt) !== '');
@@ -37,29 +38,21 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect()->route('polls.admin', $poll->id) ->with('success', 'Anket basariyla olusturuldu.');
+        return redirect()->route('polls.admin', $poll->id)->with('success', __('messages.success'));
     }
+
     public function admin($id)
     {
         $poll = Poll::with('options')->findOrFail($id);
-
-//        $userIp = FacadeRequest::ip();
-//        $hasVoted = Option::where('poll_id', $poll->id)
-//            ->whereHas('votes', function ($query) use ($userIp) {
-//                $query->where('ip_address', $userIp);
-//            })->exists();
-
-//        if ($hasVoted) {
-//            return redirect()->route('polls.results', $poll->id);
-//        }
-
         return view('polls.admin', compact('poll'));
     }
+
     public function edit($id)
     {
         $poll = Poll::with('options')->findOrFail($id);
         return view('polls.edit', compact('poll'));
     }
+
     public function update(Request $request, $id)
     {
         $poll = Poll::findOrFail($id);
@@ -85,8 +78,9 @@ class AdminController extends Controller
             $poll->options()->create(['text' => $optionText]);
         }
 
-        return redirect()->route('polls.admin', ['slug' => $poll->id])->with('success', 'Anket başarıyla güncellendi.');
+        return redirect()->route('polls.admin', $poll->id)->with('update_success',  __('messages.update_success'));
     }
+
     public function destroy($slug)
     {
         $poll = Poll::where('slug', $slug)->firstOrFail();
@@ -100,6 +94,4 @@ class AdminController extends Controller
 
         return redirect('/')->with('success', 'Anket başarıyla silindi.');
     }
-
-
 }

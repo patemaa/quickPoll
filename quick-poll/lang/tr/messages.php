@@ -27,4 +27,8 @@ return [
     'poll_url' => 'Anket linki:',
     'url_disclaimer' => 'Anket linkini giriniz...',
     'enter' => 'Ankete Git',
+    'success' => 'Anket başarıyla oluşturuldu.',
+    'update_success' => 'Anket başarıyla güncellendi.',
+    'vote_success' => 'Oyunuz başarıyla kaydedildi.',
+    'vote_error' => 'Bu anket için zaten oy verdiniz.'
 ];

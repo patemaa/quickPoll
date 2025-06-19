@@ -18,7 +18,6 @@
             </ul>
         </div>
     @endif
-<div>
 
     <form action="{{ route('polls.update', ['slug' => $poll->id]) }}" method="POST">
         @csrf
@@ -59,7 +58,6 @@
             {{ __('messages.delete') }}
         </button>
     </form>
-</div>
 </div>
 </body>
 </html>
