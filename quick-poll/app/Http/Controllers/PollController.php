@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 
 class PollController extends Controller
 {
+    // Butun anketleri gorme
     public function index()
     {
         $polls = Poll::latest()->get();
@@ -113,17 +114,6 @@ class PollController extends Controller
         return view('polls.results', compact('poll', 'totalVotes'));
     }
 
-    public function redirect(Request $request)
-    {
-        $request->validate([
-            'pollLink' => 'required|string',
-        ]);
-
-        $input = trim($request->pollLink);
-
-        return redirect()->to($input);
-    }
-
     public function admin($id)
     {
         $poll = Poll::with('options')->findOrFail($id);
@@ -172,6 +162,25 @@ class PollController extends Controller
             $poll->options()->create(['text' => $optionText]);
         }
 
-        return redirect()->route('polls.admin',  ['slug' => $poll->id])->with('success', 'Anket başarıyla güncellendi.');
+        return redirect()->route('polls.admin', ['slug' => $poll->id])->with('success', 'Anket başarıyla güncellendi.');
+    }
+
+    public function redirect(Request $request)
+    {
+        $url = $request->input('pollLink');
+
+        if (!$url || !filter_var($url, FILTER_VALIDATE_URL)) {
+            abort(404);
+        }
+
+        $parsed = parse_url($url);
+
+        $allowedHosts = ['127.0.0.1', 'localhost'];
+
+        if (!in_array($parsed['host'], $allowedHosts)) {
+            abort(404);
+        }
+
+        return redirect($url);
     }
 }
