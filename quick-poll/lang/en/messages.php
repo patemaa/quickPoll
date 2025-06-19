@@ -30,6 +30,6 @@ return [
     'success' => 'Poll created successfully.',
     'update_success' => 'Poll updated successfully.',
     'vote_success' => 'Your vote has been successfully recorded.',
-    'vote_error' => 'You have already voted in this poll.
-'
+    'vote_error' => 'You have already voted in this poll.',
+    'destroy_success' => 'Poll deleted successfully.',
 ];

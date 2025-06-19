@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Poll;
 use App\Models\Option;
 use Illuminate\Support\Facades\Request as FacadeRequest;
-use Illuminate\Support\Str;
 
 class PollController extends Controller
 {
@@ -68,10 +67,14 @@ class PollController extends Controller
 
         return view('polls.results', compact('poll', 'totalVotes'));
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|object
+     */
     public function redirect(Request $request)
     {
         $url = $request->input('pollLink');
-
         if (!$url || !filter_var($url, FILTER_VALIDATE_URL)) {
             abort(404);
         }
