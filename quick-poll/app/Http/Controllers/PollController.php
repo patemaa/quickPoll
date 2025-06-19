@@ -48,7 +48,7 @@ class PollController extends Controller
 
         if ($alreadyVoted) {
             return redirect()->route('polls.results', $poll->id)
-                ->with('vote_error', __('messages.vote_error'));
+                ->with('vote_error', __('poll.vote_error'));
         }
 
         Vote::create([
@@ -58,7 +58,7 @@ class PollController extends Controller
         ]);
 
         return redirect()->route('polls.results', $poll->id)
-            ->with('vote_success', __('messages.vote_success'));
+            ->with('vote_success', __('poll.vote_success'));
     }
     public function results($id)
     {

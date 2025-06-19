@@ -37,7 +37,7 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect()->route('polls.admin', $poll->id)->with('success', __('messages.success'));
+        return redirect()->route('polls.admin', $poll->id)->with('success', __('poll.success'));
     }
 
     public function admin(int $id)
@@ -74,7 +74,7 @@ class AdminController extends Controller
             $poll->options()->create(['text' => $optionText]);
         }
 
-        return redirect()->route('polls.admin', $poll->id)->with('update_success',  __('messages.update_success'));
+        return redirect()->route('polls.admin', $poll->id)->with('update_success',  __('poll.update_success'));
     }
 
     public function destroy($slug)
@@ -86,6 +86,6 @@ class AdminController extends Controller
         }
 
         $poll->delete();
-        return redirect('/')->with('destroy_success', __('messages.destroy_success'));
+        return redirect('/')->with('destroy_success', __('poll.destroy_success'));
     }
 }

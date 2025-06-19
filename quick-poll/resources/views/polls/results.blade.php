@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>{{ __('messages.results') }}</title>
+    <title>{{ __('poll.results') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -21,7 +21,7 @@
             </script>
         @endif
 
-    <h1 class="text-2xl font-bold mb-4">{{ __('messages.results') }}</h1>
+    <h1 class="text-2xl font-bold mb-4">{{ __('poll.results') }}</h1>
 
     <h2 class="text-lg font-semibold mb-2">{{ $poll->question }}</h2>
 

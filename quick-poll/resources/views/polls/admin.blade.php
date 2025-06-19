@@ -8,9 +8,9 @@
 <body class="bg-gray-100 p-6">
 
 <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h1 class="text-xl font-bold mb-4">{{ __('messages.poll') }}</h1>
+    <h1 class="text-xl font-bold mb-4">{{ __('poll.poll') }}</h1>
 
-    <h5 class="text-xl font-bold mb-4">{{ __('messages.question:') }} {{ $poll->question }}</h5>
+    <h5 class="text-xl font-bold mb-4">{{ __('poll.question:') }} {{ $poll->question }}</h5>
 
     @if ($errors->any())
         <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
@@ -36,21 +36,21 @@
 
         <div class="flex gap-2">
             <a href="{{ route('polls.edit', $poll->id) }}"
-               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('messages.edit') }}</a>
+               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('poll.edit') }}</a>
 
             <button type="button" onclick="copyLink()"
                     class=" bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">
-                {{ __('messages.copy_link') }}
+                {{ __('poll.copy_link') }}
             </button>
 
             <a href="{{ route('polls.results', $poll->id) }}"
-               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('messages.vote_tracking') }}
+               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('poll.vote_tracking') }}
             </a>
 
             <a href="/"
-               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('messages.homepage') }}</a>
+               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('poll.homepage') }}</a>
         </div>
-        <p id="copy-msg" class="text-sm text-green-600 mt-2 hidden duration-300">{{ __('messages.link_copied') }}</p>
+        <p id="copy-msg" class="text-sm text-green-600 mt-2 hidden duration-300">{{ __('poll.link_copied') }}</p>
     </form>
 
     @if (session('success'))

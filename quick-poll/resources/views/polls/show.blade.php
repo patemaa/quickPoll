@@ -2,14 +2,14 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>{{ __('messages.vote') }}</title>
+    <title>{{ __('poll.vote') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
 <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h1 class="text-xl font-bold mb-4">{{ __('messages.poll') }}</h1>
+    <h1 class="text-xl font-bold mb-4">{{ __('poll.poll') }}</h1>
 
-    <h5 class="text-xl font-bold mb-4">{{ __('messages.question:') }} {{ $poll->question }}</h5>
+    <h5 class="text-xl font-bold mb-4">{{ __('poll.question:') }} {{ $poll->question }}</h5>
 
     @if ($errors->any())
         <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
@@ -34,7 +34,7 @@
 
         <div class="flex gap-2">
             <button type="submit" class="duration-300 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
-                {{ __('messages.vote') }}
+                {{ __('poll.vote') }}
             </button>
     </form>
 </div>
