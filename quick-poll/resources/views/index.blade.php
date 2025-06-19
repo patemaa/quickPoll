@@ -12,11 +12,11 @@
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-xl font-semibold text-gray-800">Quick Poll</h1>
         <a href="/create"
-           class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition">
+           class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition duration-300">
             Create Poll
         </a>
         <a href="{{ route('polls.index') }}"
-           class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition">
+           class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition duration-300">
             All Polls
         </a>
     </div>
@@ -31,7 +31,7 @@
         </div>
 
         <button type="submit"
-                class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded transition">
+                class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 rounded transition duration-300">
             Enter
         </button>
     </form>

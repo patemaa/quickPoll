@@ -24,7 +24,7 @@
         </ul>
     @endif
     <div class="flex gap-2 mt-6">
-        <a href="/" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Back to Homepage</a>
+        <a href="/" class="duration-300 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Back to Homepage</a>
     </div>
 </div>
 </body>

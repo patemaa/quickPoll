@@ -18,6 +18,7 @@
             </ul>
         </div>
     @endif
+<div>
 
     <form action="{{ route('polls.update', ['slug' => $poll->id]) }}" method="POST">
         @csrf
@@ -48,10 +49,17 @@
         </div>
 
         <button type="submit"
-                class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+                class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">
             Save
         </button>
     </form>
+    <form action="{{ route('polls.destroy', ['slug' => $poll->slug]) }}" method="POST" class="mt-4">
+        @csrf
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+            Delete
+        </button>
+    </form>
+</div>
 </div>
 </body>
 </html>

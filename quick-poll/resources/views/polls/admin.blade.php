@@ -34,21 +34,19 @@
         </div>
 
         <div class="flex gap-2">
-            <a href="{{ route('polls.edit', $poll->id) }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Edit</a>
+            <a href="{{ route('polls.edit', $poll->id) }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">Edit</a>
 
             <button type="button" onclick="copyLink()"
-                    class=" bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+                    class=" bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">
                 Copy Link
             </button>
 
             <a href="{{ route('polls.results', $poll->id) }}"
-               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Vote Tracking</a>
+               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">Vote Tracking</a>
 
-            <a href="/" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Back to Homepage</a>
+            <a href="/" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">Back to Homepage</a>
         </div>
-        <p id="copy-msg" class="text-sm text-green-600 mt-2 hidden">Link copied!</p>
-
-
+        <p id="copy-msg" class="text-sm text-green-600 mt-2 hidden duration-300">Link copied!</p>
     </form>
 </div>
 

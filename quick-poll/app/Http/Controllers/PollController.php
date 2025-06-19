@@ -11,50 +11,12 @@ use Illuminate\Support\Str;
 
 class PollController extends Controller
 {
-    // Butun anketleri gorme
     public function index()
     {
         $polls = Poll::latest()->get();
 
         return view('list', compact('polls'));
     }
-
-    // Yeni anket oluşturma formu
-    public function create()
-    {
-        return view('polls.create')
-            ->with('success', 'Anket basariyla olusturuldu.');
-    }
-
-    // Anketi kaydet
-    public function store(Request $request)
-    {
-        $options = array_filter($request->input('options'), fn($opt) => trim($opt) !== '');
-
-        $request->merge(['polls_options' => $options]);
-
-        $request->validate([
-            'question' => 'required|string|max:255',
-            'polls_options' => 'required|array|min:2|max:4',
-            'polls_options.*' => 'required|string|max:100'
-        ]);
-
-        $poll = Poll::create([
-            'question' => $request->question,
-            'slug' => Str::slug($request->question)
-        ]);
-
-        foreach ($options as $optionText) {
-            Option::create([
-                'poll_id' => $poll->id,
-                'text' => $optionText,
-            ]);
-        }
-
-        return redirect()->route('polls.admin', $poll->id);
-    }
-
-    // Anketi göster (oy verme ekranı)
     public function show($id)
     {
         $poll = Poll::with('options')->findOrFail($id);
@@ -71,8 +33,6 @@ class PollController extends Controller
 
         return view('polls.show', compact('poll'));
     }
-
-    // Oy kullan
     public function vote(Request $request, $pollId)
     {
         $request->validate([
@@ -104,8 +64,6 @@ class PollController extends Controller
         return redirect()->route('polls.results', $poll->id)
             ->with('success', 'Oyunuz başarıyla kaydedildi.');
     }
-
-    // Sonuçları göster
     public function results($id)
     {
         $poll = Poll::with('options.votes')->findOrFail($id);
@@ -113,58 +71,6 @@ class PollController extends Controller
 
         return view('polls.results', compact('poll', 'totalVotes'));
     }
-
-    public function admin($id)
-    {
-        $poll = Poll::with('options')->findOrFail($id);
-
-//        $userIp = FacadeRequest::ip();
-//        $hasVoted = Option::where('poll_id', $poll->id)
-//            ->whereHas('votes', function ($query) use ($userIp) {
-//                $query->where('ip_address', $userIp);
-//            })->exists();
-
-//        if ($hasVoted) {
-//            return redirect()->route('polls.results', $poll->id);
-//        }
-
-        return view('polls.admin', compact('poll'));
-    }
-
-    public function edit($id)
-    {
-        $poll = Poll::with('options')->findOrFail($id);
-        return view('polls.edit', compact('poll'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $poll = Poll::findOrFail($id);
-
-        $options = array_filter($request->input('options'), fn($opt) => trim($opt) !== '');
-
-        $request->merge(['polls_options' => $options]);
-
-        $request->validate([
-            'question' => 'required|string|max:255',
-            'polls_options' => 'required|array|min:2|max:4',
-            'polls_options.*' => 'required|string|max:100'
-        ]);
-
-        $poll->update([
-            'question' => $request->question,
-            'slug' => Str::slug($request->question),
-        ]);
-
-        $poll->options()->delete();
-
-        foreach ($options as $optionText) {
-            $poll->options()->create(['text' => $optionText]);
-        }
-
-        return redirect()->route('polls.admin', ['slug' => $poll->id])->with('success', 'Anket başarıyla güncellendi.');
-    }
-
     public function redirect(Request $request)
     {
         $url = $request->input('pollLink');
@@ -183,4 +89,5 @@ class PollController extends Controller
 
         return redirect($url);
     }
+
 }
