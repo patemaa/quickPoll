@@ -96,13 +96,8 @@ class PollController extends Controller
     public function redirect(Request $request)
     {
         $url = $request->input('pollLink');
-        if (!$url || !filter_var($url, FILTER_VALIDATE_URL)) {
-            abort(404);
-        }
 
-        $parsed = parse_url($url);
-        $allowedHosts = ['127.0.0.1', 'localhost'];
-        if (!in_array($parsed['host'], $allowedHosts)) {
+        if (!filter_var($url, FILTER_VALIDATE_URL) || !in_array(parse_url($url, PHP_URL_HOST), ['127.0.0.1', 'localhost'])) {
             abort(404);
         }
 
