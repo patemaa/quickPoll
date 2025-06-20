@@ -55,7 +55,7 @@ class AdminController extends Controller
      * @param int $id
      * @return Factory|View|Application|object
      */
-    public function admin(int $id)
+    public function viewAdmin(int $id)
     {
         $poll = Poll::with('options')->findOrFail($id);
         return view('polls.admin', compact('poll'));

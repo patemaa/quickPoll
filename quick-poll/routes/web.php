@@ -26,7 +26,7 @@ Route::get('/polls/{slug}', [PollController::class, 'show'])->name('polls.show')
 //admin
 Route::get('/create', [AdminController::class, 'create']);
 Route::post('/store', [AdminController::class, 'store'])->name('polls.store');
-Route::get('/polls/{slug}/admin', [AdminController::class, 'admin'])->name('polls.admin');
+Route::get('/polls/{slug}/admin', [AdminController::class, 'viewAdmin'])->name('polls.admin');
 Route::get('/polls/{slug}/edit', [AdminController::class, 'edit'])->name('polls.edit');
 Route::post('/polls/{slug}/update', [AdminController::class, 'update'])->name('polls.update');
 Route::post('/polls/{slug}/destroy', [AdminController::class, 'destroy'])->name('polls.destroy');
