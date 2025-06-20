@@ -26,7 +26,7 @@ class PollController extends Controller
             })->exists();
 
         if ($hasVoted) {
-            return redirect()->route('polls.results', $poll->id);
+            return redirect()->route('polls.result', $poll->id);
         }
 
         return view('polls.show', compact('poll'));
@@ -47,8 +47,8 @@ class PollController extends Controller
             ->exists();
 
         if ($alreadyVoted) {
-            return redirect()->route('polls.results', $poll->id)
-                ->with('vote_error', __('messages.vote_error'));
+            return redirect()->route('polls.result', $poll->id)
+                ->with('vote_error', __('poll.vote_error'));
         }
 
         Vote::create([
@@ -57,15 +57,15 @@ class PollController extends Controller
             'ip_address' => $userIp,
         ]);
 
-        return redirect()->route('polls.results', $poll->id)
-            ->with('vote_success', __('messages.vote_success'));
+        return redirect()->route('polls.result', $poll->id)
+            ->with('vote_success', __('poll.vote_success'));
     }
-    public function results($id)
+    public function result($id)
     {
         $poll = Poll::with('options.votes')->findOrFail($id);
         $totalVotes = $poll->options->sum(fn($opt) => $opt->votes->count());
 
-        return view('polls.results', compact('poll', 'totalVotes'));
+        return view('polls.result', compact('poll', 'totalVotes'));
     }
 
     /**

@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/polls', [PollController::class, 'index'])->name('polls.index');
 Route::post('/polls/{slug}/vote', [PollController::class, 'vote'])->name('polls.vote');
-Route::get('/polls/{slug}/results', [PollController::class, 'results'])->name('polls.results');
+Route::get('/polls/{slug}/result', [PollController::class, 'result'])->name('polls.result');
 Route::post('/polls/redirect', [PollController::class, 'redirect'])->name('polls.redirect');
 Route::get('/polls/{slug}', [PollController::class, 'show'])->name('polls.show');
 

@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>{{ __('messages.results') }}</title>
+    <title>{{ __('poll.result') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -16,12 +16,12 @@
         @if(session('vote_success') || isset($vote_success))
             <script>
                 setTimeout(function() {
-                    window.location.href = "{{ route('polls.results', $poll->id ?? '') }}";
+                    window.location.href = "{{ route('polls.result', $poll->id ?? '') }}";
                 }, 1000);
             </script>
         @endif
 
-    <h1 class="text-2xl font-bold mb-4">{{ __('messages.results') }}</h1>
+    <h1 class="text-2xl font-bold mb-4">{{ __('poll.result') }}</h1>
 
     <h2 class="text-lg font-semibold mb-2">{{ $poll->question }}</h2>
 
@@ -50,10 +50,10 @@
     </ul>
 
     {{-- Chart.js grafik --}}
-    <canvas id="resultsChart" width="400" height="200"></canvas>
+    <canvas id="resultChart" width="400" height="200"></canvas>
 
     <script>
-        const ctx = document.getElementById('resultsChart').getContext('2d');
+        const ctx = document.getElementById('resultChart').getContext('2d');
         const chart = new Chart(ctx, {
             type: 'pie',
             data: {
