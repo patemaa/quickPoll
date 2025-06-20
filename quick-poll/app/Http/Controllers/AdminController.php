@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePollRequest;
+use App\Http\Requests\UpdatePollRequest;
 use App\Models\Option;
 use App\Models\Poll;
 use Illuminate\Contracts\View\Factory;
@@ -23,18 +25,12 @@ class AdminController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StorePollRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StorePollRequest $request)
     {
-        $options = array_filter($request->input('options'), fn($opt) => trim($opt) !== '');
-        $request->merge(['polls_options' => $options]);
-        $request->validate([
-            'question' => 'required|string|max:255',
-            'polls_options' => 'required|array|min:2|max:4',
-            'polls_options.*' => 'required|string|max:100'
-        ]);
+        $options = array_filter($request->polls_options, fn($opt) => trim($opt) !== '');
 
         $poll = Poll::create([
             'question' => $request->question,
@@ -72,20 +68,18 @@ class AdminController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UpdatePollRequest $request
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(Request $request, int $id)
+    public function update(UpdatePollRequest $request, int $id)
     {
         $poll = Poll::findOrFail($id);
-        $options = array_filter($request->input('options'), fn($opt) => trim($opt) !== '');
+        $options = array_filter($request->input('polls_options'), fn($opt) => trim($opt) !== '');
+        if (count($options) < 2 || count($options) > 4) {
+            return back()->withErrors(['options_error' => __('poll.options_error')])->withInput();
+        }
         $request->merge(['polls_options' => $options]);
-        $request->validate([
-            'question' => 'required|string|max:255',
-            'polls_options' => 'required|array|min:2|max:4',
-            'polls_options.*' => 'required|string|max:100'
-        ]);
 
         $poll->update([
             'question' => $request->question,
@@ -97,7 +91,7 @@ class AdminController extends Controller
             $poll->options()->create(['text' => $optionText]);
         }
 
-        return redirect()->route('polls.admin', $poll->id)->with('update_success',  __('poll.update_success'));
+        return redirect()->route('polls.admin', $poll->id)->with('update_success', __('poll.update_success'));
     }
 
     /**

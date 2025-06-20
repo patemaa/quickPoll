@@ -30,7 +30,7 @@
         <div class="mb-4">
             <label class="block font-medium mb-1">{{ __('poll.options') }}</label>
             @for ($i = 0; $i < 4; $i++)
-                <input type="text" name="options[{{ $i }}]" class="w-full border border-gray-300 rounded p-2 mb-2"
+                <input type="text" name=polls_options[]" class="w-full border border-gray-300 rounded p-2 mb-2"
                        placeholder="{{ __('poll.option') }} {{ $i + 1 }}"
                        value="{{ old('options.' . $i) }}" {{ $i < 2 ? 'required' : '' }}>
             @endfor

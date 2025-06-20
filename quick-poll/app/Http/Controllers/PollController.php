@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VotePollRequest;
 use App\Models\Vote;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -44,16 +45,12 @@ class PollController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param VotePollRequest $request
      * @param int $pollId
      * @return RedirectResponse
      */
-    public function vote(Request $request, int $pollId)
+    public function vote(VotePollRequest $request, int $pollId)
     {
-        $request->validate([
-            'option_id' => 'required|exists:polls_options,id'
-        ]);
-
         $option = Option::findOrFail($request->input('option_id'));
         $poll = Poll::findOrFail($pollId);
         $userIp = FacadeRequest::ip();

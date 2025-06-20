@@ -32,4 +32,5 @@ return [
     'vote_success' => 'Your vote has been successfully recorded.',
     'vote_error' => 'You have already voted in this poll.',
     'destroy_success' => 'Poll deleted successfully.',
+    'options_error' => 'Please provide between 2 and 4 valid options.'
 ];
