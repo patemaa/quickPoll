@@ -19,7 +19,7 @@ return [
     'edit_poll' => 'Anketi Düzenle',
     'save' => 'Kaydet',
     'delete' => 'Sil',
-    'results' => 'Anket Sonuçları',
+    'result' => 'Anket Sonuçları',
     'vote' => 'Oy Ver',
     'poll_list' => 'Anket Listesi',
     'all_polls' => 'Tüm Anketler',

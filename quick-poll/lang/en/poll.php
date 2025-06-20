@@ -19,7 +19,7 @@ return [
     'edit_poll' => 'Edit Poll',
     'save' => 'Save',
     'delete' => 'Delete',
-    'results' => 'Poll Results',
+    'result' => 'Poll Result',
     'vote' => 'Vote',
     'poll_list' => 'Poll List',
     'all_polls' => 'All Polls',

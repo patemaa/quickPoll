@@ -43,7 +43,7 @@
                 {{ __('poll.copy_link') }}
             </button>
 
-            <a href="{{ route('polls.results', $poll->id) }}"
+            <a href="{{ route('polls.result', $poll->id) }}"
                class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('poll.vote_tracking') }}
             </a>
 
