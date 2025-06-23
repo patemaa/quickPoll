@@ -52,6 +52,12 @@ class PollController extends Controller
      */
     public function vote(VotePollRequest $request, int $pollId)
     {
+        if (!auth()->check()) {
+            return redirect()
+                ->route('polls.show', ['slug' => $pollId])
+                ->with('vote_fail', __('poll.vote_fail'));
+        }
+
         $option = Option::findOrFail($request->input('option_id'));
         $poll = Poll::findOrFail($pollId);
         $userIp = FacadeRequest::ip();
@@ -73,7 +79,6 @@ class PollController extends Controller
         return redirect()->route('polls.result', $poll->id)
             ->with('vote_success', __('poll.vote_success'));
     }
-
 
     /**
      * @param int $id

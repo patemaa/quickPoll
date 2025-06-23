@@ -51,5 +51,7 @@ return [
     'reset_password' => 'Reset Password',
     'sign_up_message' => 'Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.',
     'sing_up_alert' => 'A new verification link has been sent to the email address you provided during registration.',
-    'resent_verification_email' => 'Resend Verification Email'
+    'resent_verification_email' => 'Resend Verification Email',
+    'vote_fail' => 'You must be logged in to vote.',
+
 ];
