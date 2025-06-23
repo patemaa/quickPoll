@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('create.poll')" :active="request()->routeIs('create.poll')">
-                        {{ __('Create Poll') }}
+                        {{ __('poll.create_poll') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -38,7 +38,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('poll.profile') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -48,7 +48,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('poll.logout') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -74,7 +74,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('create.poll')" :active="request()->routeIs('create.poll')">
-                {{ __('Create Poll') }}
+                {{ __('poll.create_poll') }}
             </x-responsive-nav-link>
         </div>
 
@@ -87,7 +87,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('poll.profile') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -97,7 +97,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('poll.logout') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

@@ -8,8 +8,6 @@
 </head>
 <body class="bg-gray-900 min-h-screen flex flex-col justify-center items-center px-4 text-white">
 
-
-
 @if (Route::has('login'))
     <div class="h-14.5 hidden lg:block"></div>
 @endif
@@ -24,29 +22,26 @@
                         href="{{ url('/dashboard') }}"
                         class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition"
                     >
-                        Dashboard
+                        {{ __('Dashboard') }}
                     </a>
                 @else
                     <a
                         href="{{ route('login') }}"
                         class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition"
                     >
-                        Log in
+                        {{ __('poll.login') }}
                     </a>
 
                     @if (Route::has('register'))
                         <a
                             href="{{ route('register') }}"
                             class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition">
-                            Register
+                            {{ __('poll.register') }}
                         </a>
                     @endif
                 @endauth
             </div>
         @endif
-
-
-
     </div>
 
     <form class="space-y-4" action="{{ route('polls.redirect') }}" method="POST">

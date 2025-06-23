@@ -11,12 +11,12 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="max-w-4xl mx-auto py-8">
                         <div class="flex items-center justify-between mb-6">
-                            <h1 class="self-start text-2xl font-bold">Tüm Anketler</h1>
+                            <h1 class="self-start text-2xl font-bold">{{ __('poll.all_polls') }}</h1>
                             <a
                                 href="{{ url('/create') }}"
                                 class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-3 py-1.5 rounded transition duration-300"
                             >
-                                Create Poll
+                                {{ __('poll.create_poll') }}
                             </a>
                         </div>
 
