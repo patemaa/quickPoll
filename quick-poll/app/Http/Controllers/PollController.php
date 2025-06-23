@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Poll;
 use App\Models\Option;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Request as FacadeRequest;
 
 class PollController extends Controller
@@ -51,6 +52,12 @@ class PollController extends Controller
      */
     public function vote(VotePollRequest $request, int $pollId)
     {
+        if (!auth()->check()) {
+            return redirect()
+                ->route('polls.show', ['slug' => $pollId])
+                ->with('vote_fail', __('poll.vote_fail'));
+        }
+
         $option = Option::findOrFail($request->input('option_id'));
         $poll = Poll::findOrFail($pollId);
         $userIp = FacadeRequest::ip();
@@ -73,7 +80,6 @@ class PollController extends Controller
             ->with('vote_success', __('poll.vote_success'));
     }
 
-
     /**
      * @param int $id
      * @return Factory|View|Application|object
@@ -86,20 +92,24 @@ class PollController extends Controller
         return view('polls.result', compact('poll', 'totalVotes'));
     }
 
+
     /**
      * @param Request $request
-     * @return \Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|object
+     * @return Application|RedirectResponse|Redirector|object
      */
     public function redirect(Request $request)
     {
         $url = $request->input('pollLink');
-        $path = parse_url($url, PHP_URL_PATH);
-        $segments = explode('/', trim($path, '/'));
-        $slug = end($segments);
-        if (!$slug) {
+
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
             abort(404);
         }
 
-        return redirect()->route('polls.show', ['slug' => $slug]);
+        $host = parse_url($url, PHP_URL_HOST);
+        if (!in_array($host, ['localhost', '127.0.0.1', 'quick-poll.test'])) {
+            abort(404);
+        }
+
+        return redirect($url);
     }
 }

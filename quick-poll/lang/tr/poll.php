@@ -33,4 +33,26 @@ return [
     'vote_error' => 'Bu anket için zaten oy verdiniz.',
     'destroy_success' => 'Anket başarıyla silindi.',
     'back' => 'Geri Dön',
+    'login' => 'Giriş Yap',
+    'register' => 'Kayıt Ol',
+    'forgot_password' => 'Şifreni mi unuttun?',
+    'password' => 'Şifre',
+    'profile' => 'Profil',
+    'logout' => 'Çıkış Yap',
+    'name' => 'İsim',
+    'email' => 'Email',
+    'confirm_password' => 'Şifreyi Doğrula',
+    'already_registered' => 'Zaten kayıtlı mısınız?',
+    'email_password_reset_link' => 'Email Şifre Sıfırlama Linki',
+    'forgot_password_message' => 'Şifrenizi mi unuttunuz? Sorun değil. Lütfen e-posta adresinizi bize bildirin, size yeni bir şifre seçmenizi sağlayacak bir şifre sıfırlama bağlantısı göndereceğiz.',
+    'confirm' => 'Onayla',
+    'confirm_password_message' => 'Güvenli bir alana erişmek üzeresiniz. Lütfen devam etmeden önce şifrenizi girerek kimliğinizi doğrulayın.',
+    'reset_password' => 'Şifreyi Sıfırla',
+    'sign_up_message' => 'Kaydolduğunuz için teşekkürler! Başlamadan önce, size az önce gönderdiğimiz e-postadaki bağlantıya tıklayarak e-posta adresinizi doğrular mısınız?
+Eğer e-postayı almadıysanız, size memnuniyetle tekrar gönderebiliriz.',
+    'sing_up_alert' => 'Kayıt olurken belirttiğiniz e-posta adresine yeni bir doğrulama bağlantısı gönderildi.',
+    'resent_verification_email' => 'Doğrulama E-postasını Yeniden Gönder',
+    'vote_fail' => 'Oy vermek için giriş yapmalısınız.',
+
+
 ];
