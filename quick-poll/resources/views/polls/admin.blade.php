@@ -7,7 +7,6 @@
 
     <div class="max-w-xl mx-auto bg-gray-800 p-6 rounded-lg shadow mt-6">
 
-        <h1 class="text-2xl font-bold mb-4">{{ __('poll.poll') }}</h1>
         <h5 class="text-xl font-semibold mb-6">{{ __('poll.question:') }} {{ $poll->question }}</h5>
 
         <x-errors></x-errors>
