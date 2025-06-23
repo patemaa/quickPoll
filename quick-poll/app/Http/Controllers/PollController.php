@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VotePollRequest;
 use App\Models\Vote;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Poll;
 use App\Models\Option;
@@ -10,15 +15,22 @@ use Illuminate\Support\Facades\Request as FacadeRequest;
 
 class PollController extends Controller
 {
+    /**
+     * @return Factory|View|Application|object
+     */
     public function index()
     {
         $polls = Poll::latest()->get();
         return view('list', compact('polls'));
     }
-    public function show($id)
+
+    /**
+     * @param int $id
+     * @return Factory|View|Application|RedirectResponse|object
+     */
+    public function show(int $id)
     {
         $poll = Poll::with('options')->findOrFail($id);
-
         $userIp = FacadeRequest::ip();
         $hasVoted = Option::where('poll_id', $poll->id)
             ->whereHas('votes', function ($query) use ($userIp) {
@@ -31,17 +43,17 @@ class PollController extends Controller
 
         return view('polls.show', compact('poll'));
     }
-    public function vote(Request $request, $pollId)
-    {
-        $request->validate([
-            'option_id' => 'required|exists:polls_options,id'
-        ]);
 
+    /**
+     * @param VotePollRequest $request
+     * @param int $pollId
+     * @return RedirectResponse
+     */
+    public function vote(VotePollRequest $request, int $pollId)
+    {
         $option = Option::findOrFail($request->input('option_id'));
         $poll = Poll::findOrFail($pollId);
-
         $userIp = FacadeRequest::ip();
-
         $alreadyVoted = Vote::where('poll_id', $poll->id)
             ->where('ip_address', $userIp)
             ->exists();
@@ -60,7 +72,13 @@ class PollController extends Controller
         return redirect()->route('polls.result', $poll->id)
             ->with('vote_success', __('poll.vote_success'));
     }
-    public function result($id)
+
+
+    /**
+     * @param int $id
+     * @return Factory|View|Application|object
+     */
+    public function result(int $id)
     {
         $poll = Poll::with('options.votes')->findOrFail($id);
         $totalVotes = $poll->options->sum(fn($opt) => $opt->votes->count());
@@ -75,18 +93,13 @@ class PollController extends Controller
     public function redirect(Request $request)
     {
         $url = $request->input('pollLink');
-        if (!$url || !filter_var($url, FILTER_VALIDATE_URL)) {
+        $path = parse_url($url, PHP_URL_PATH);
+        $segments = explode('/', trim($path, '/'));
+        $slug = end($segments);
+        if (!$slug) {
             abort(404);
         }
 
-        $parsed = parse_url($url);
-
-        $allowedHosts = ['127.0.0.1', 'localhost'];
-
-        if (!in_array($parsed['host'], $allowedHosts)) {
-            abort(404);
-        }
-
-        return redirect($url);
+        return redirect()->route('polls.show', ['slug' => $slug]);
     }
 }

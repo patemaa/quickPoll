@@ -31,5 +31,6 @@ return [
     'update_success' => 'Anket başarıyla güncellendi.',
     'vote_success' => 'Oyunuz başarıyla kaydedildi.',
     'vote_error' => 'Bu anket için zaten oy verdiniz.',
-    'destroy_success' => 'Anket başarıyla silindi.'
+    'destroy_success' => 'Anket başarıyla silindi.',
+    'back' => 'Geri Dön',
 ];

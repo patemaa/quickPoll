@@ -16,16 +16,13 @@
             @foreach ($polls as $poll)
                 <li>
                     <a href="{{ route('polls.show', $poll->id) }}"
-                       class="block p-4 border border-gray-300 rounded hover:bg-gray-100 transition">
+                       class="block p-4 border border-gray-300 rounded hover:bg-gray-100 transition duration-300">
                         {{ $poll->question }}
                     </a>
                 </li>
             @endforeach
         </ul>
     @endif
-    <div class="flex gap-2 mt-6">
-        <a href="/" class="duration-300 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">{{ __('poll.homepage') }}</a>
-    </div>
 </div>
 </body>
 </html>

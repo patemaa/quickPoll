@@ -2,28 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePollRequest;
+use App\Http\Requests\UpdatePollRequest;
 use App\Models\Option;
 use App\Models\Poll;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+    public function dashboard()
+    {
+        $polls = Poll::latest()->get(); // tüm anketleri en yeniye göre ala
+
+        return view('dashboard', compact('polls'));
+    }
+    /**
+     * @return Factory|View|Application|object
+     */
     public function create()
     {
         return view('polls.create');
     }
 
-    public function store(Request $request)
+    /**
+     * @param StorePollRequest $request
+     * @return RedirectResponse
+     */
+    public function store(StorePollRequest $request)
     {
-        $options = array_filter($request->input('options'), fn($opt) => trim($opt) !== '');
-        $request->merge(['polls_options' => $options]);
-
-        $request->validate([
-            'question' => 'required|string|max:255',
-            'polls_options' => 'required|array|min:2|max:4',
-            'polls_options.*' => 'required|string|max:100'
-        ]);
+        $options = array_filter($request->polls_options, fn($opt) => trim($opt) !== '');
 
         $poll = Poll::create([
             'question' => $request->question,
@@ -40,29 +53,39 @@ class AdminController extends Controller
         return redirect()->route('polls.admin', $poll->id)->with('success', __('poll.success'));
     }
 
-    public function admin(int $id)
+    /**
+     * @param int $id
+     * @return Factory|View|Application|object
+     */
+    public function viewAdmin(int $id)
     {
         $poll = Poll::with('options')->findOrFail($id);
         return view('polls.admin', compact('poll'));
     }
 
-    public function edit($id)
+    /**
+     * @param $id
+     * @return Factory|View|Application|object
+     */
+    public function edit(int $id)
     {
         $poll = Poll::with('options')->findOrFail($id);
         return view('polls.edit', compact('poll'));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * @param UpdatePollRequest $request
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function update(UpdatePollRequest $request, int $id)
     {
         $poll = Poll::findOrFail($id);
-        $options = array_filter($request->input('options'), fn($opt) => trim($opt) !== '');
+        $options = array_filter($request->input('polls_options'), fn($opt) => trim($opt) !== '');
+        if (count($options) < 2 || count($options) > 4) {
+            return back()->withErrors(['options_error' => __('poll.options_error')])->withInput();
+        }
         $request->merge(['polls_options' => $options]);
-
-        $request->validate([
-            'question' => 'required|string|max:255',
-            'polls_options' => 'required|array|min:2|max:4',
-            'polls_options.*' => 'required|string|max:100'
-        ]);
 
         $poll->update([
             'question' => $request->question,
@@ -74,18 +97,22 @@ class AdminController extends Controller
             $poll->options()->create(['text' => $optionText]);
         }
 
-        return redirect()->route('polls.admin', $poll->id)->with('update_success',  __('poll.update_success'));
+        return redirect()->route('polls.admin', $poll->id)->with('update_success', __('poll.update_success'));
     }
 
-    public function destroy($slug)
+    /**
+     * @param string $slug
+     * @return Application|RedirectResponse|Redirector|object
+     */
+    public function destroy(string $slug)
     {
         $poll = Poll::where('slug', $slug)->firstOrFail();
         foreach ($poll->options as $option) {
             $option->votes()->delete();
             $option->delete();
         }
-
         $poll->delete();
+
         return redirect('/')->with('destroy_success', __('poll.destroy_success'));
     }
 }
