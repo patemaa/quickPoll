@@ -50,7 +50,7 @@
                 {{ __('poll.vote_tracking') }}
             </a>
 
-            <a href="/"
+            <a href="/polls"
                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
                 {{ __('poll.homepage') }}
             </a>

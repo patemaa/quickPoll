@@ -10,7 +10,7 @@
 <div class="w-full max-w-xl bg-gray-800 text-white p-6 rounded-lg shadow-lg">
     <div class="flex items-center justify-between mb-4">
         <h1 class="text-xl font-bold">{{ __('poll.poll') }}</h1>
-        <a href="/"
+        <a href="/polls"
            class="text-sm bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded transition duration-300">
             {{ __('poll.homepage') }}
         </a>

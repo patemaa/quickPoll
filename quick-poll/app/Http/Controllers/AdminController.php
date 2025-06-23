@@ -18,7 +18,7 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $polls = Poll::latest()->get(); // tüm anketleri en yeniye göre ala
+        $polls = Poll::latest()->get();
 
         return view('dashboard', compact('polls'));
     }
@@ -113,6 +113,6 @@ class AdminController extends Controller
         }
         $poll->delete();
 
-        return redirect('/')->with('destroy_success', __('poll.destroy_success'));
+        return redirect('polls')->with('destroy_success', __('poll.destroy_success'));
     }
 }

@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('create.poll')" :active="request()->routeIs('create.poll')">
                         {{ __('poll.create_poll') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('polls.index')" :active="request()->routeIs('polls.index')">
+                        {{ __('poll.vote') }}
+                    </x-nav-link>
                 </div>
             </div>
 
