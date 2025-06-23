@@ -9,6 +9,10 @@ Route::get('/', function () {
     return view('index')->name('index');
 });
 
+Route::get('/deneme', function () {
+    return view('deneme');
+});
+
 Route::get('/polls', [PollController::class, 'index'])->name('polls.index');
 Route::get('/polls/{slug}/result', [PollController::class, 'result'])->name('polls.result');
 Route::post('/polls/redirect', [PollController::class, 'redirect'])->name('polls.redirect');
