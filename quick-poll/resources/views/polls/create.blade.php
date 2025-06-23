@@ -6,6 +6,7 @@
     </x-slot>
 
     <div class="max-w-xl mx-auto bg-gray-800 p-6 rounded-lg shadow mt-6 text-gray-200">
+
         <x-errors></x-errors>
 
         <form action="/store" method="POST">
@@ -34,4 +35,5 @@
             </button>
         </form>
     </div>
+    <x-footer></x-footer>
 </x-app-layout>

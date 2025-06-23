@@ -48,12 +48,15 @@ return [
     'confirm' => 'Onayla',
     'confirm_password_message' => 'Güvenli bir alana erişmek üzeresiniz. Lütfen devam etmeden önce şifrenizi girerek kimliğinizi doğrulayın.',
     'reset_password' => 'Şifreyi Sıfırla',
-    'sign_up_message' => 'Kaydolduğunuz için teşekkürler! Başlamadan önce, size az önce gönderdiğimiz e-postadaki bağlantıya tıklayarak e-posta adresinizi doğrular mısınız?
-Eğer e-postayı almadıysanız, size memnuniyetle tekrar gönderebiliriz.',
+    'sign_up_message' => 'Kaydolduğunuz için teşekkürler! Başlamadan önce, size az önce gönderdiğimiz e-postadaki bağlantıya tıklayarak e-posta adresinizi doğrular mısınız? Eğer e-postayı almadıysanız, size memnuniyetle tekrar gönderebiliriz.',
     'sing_up_alert' => 'Kayıt olurken belirttiğiniz e-posta adresine yeni bir doğrulama bağlantısı gönderildi.',
     'resent_verification_email' => 'Doğrulama E-postasını Yeniden Gönder',
     'vote_fail' => 'Oy vermek için giriş yapmalısınız.',
     'admin' => 'Admin',
-
-
+    'footer_info' => 'Basit ve hızlı anket oluşturma ve oylama platformu.',
+    'pages' => 'Sayfalar',
+    'social_media' => 'Sosyal Medya',
+    'contact' => 'İletişim',
+    'phone_number' => 'Telefon',
+    'rights_reserved' => 'Bütün hakları saklıdır.'
 ];

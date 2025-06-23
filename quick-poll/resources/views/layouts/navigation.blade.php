@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('create.poll')" :active="request()->routeIs('create.poll')">
-                        {{ __('poll.create_poll') }}
+                        {{ __('poll.create') }}
                     </x-nav-link>
                     <x-nav-link :href="route('polls.index')" :active="request()->routeIs('polls.index')">
                         {{ __('poll.vote') }}
@@ -87,7 +87,10 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('create.poll')" :active="request()->routeIs('create.poll')">
-                {{ __('poll.create_poll') }}
+                {{ __('poll.create') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('polls.index')" :active="request()->routeIs('polls.index')">
+                {{ __('poll.vote') }}
             </x-responsive-nav-link>
         </div>
 

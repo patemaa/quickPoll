@@ -82,6 +82,7 @@
                 </div>
             @endif
         </div>
+        <x-footer></x-footer>
     </x-app-layout>
 @endauth
 
@@ -138,7 +139,8 @@
                         <span>{{ $voteCount }} oy (%{{ $percent }})</span>
                     </div>
                     <div class="w-full bg-gray-700 rounded h-3 mt-1">
-                        <div class="h-3 rounded" style="width: {{ $percent }}%; background-color: {{ $barColor }}"></div>
+                        <div class="h-3 rounded"
+                             style="width: {{ $percent }}%; background-color: {{ $barColor }}"></div>
                     </div>
                 </li>
             @endforeach
@@ -178,7 +180,6 @@
             </div>
         @endif
     </div>
-
     </body>
     </html>
 @endguest
