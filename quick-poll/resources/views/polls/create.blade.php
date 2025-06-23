@@ -1,14 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('poll.create_poll') }}
-            </h2>
-            <a href="{{ route('dashboard') }}"
-               class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded transition">
-                ← {{ __('poll.back') }}
-            </a>
-        </div>
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('poll.create_poll') }}
+        </h2>
     </x-slot>
 
     <div class="max-w-xl mx-auto bg-gray-800 p-6 rounded-lg shadow mt-6 text-gray-200">
