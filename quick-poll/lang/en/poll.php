@@ -53,5 +53,5 @@ return [
     'sing_up_alert' => 'A new verification link has been sent to the email address you provided during registration.',
     'resent_verification_email' => 'Resend Verification Email',
     'vote_fail' => 'You must be logged in to vote.',
-
+    'admin' => 'Admin',
 ];

@@ -21,8 +21,7 @@ class PollController extends Controller
      */
     public function index()
     {
-        $polls = Poll::latest()->get();
-        return view('list', compact('polls'));
+        return view('index');
     }
 
     /**

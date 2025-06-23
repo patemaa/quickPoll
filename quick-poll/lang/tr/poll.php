@@ -53,6 +53,7 @@ Eğer e-postayı almadıysanız, size memnuniyetle tekrar gönderebiliriz.',
     'sing_up_alert' => 'Kayıt olurken belirttiğiniz e-posta adresine yeni bir doğrulama bağlantısı gönderildi.',
     'resent_verification_email' => 'Doğrulama E-postasını Yeniden Gönder',
     'vote_fail' => 'Oy vermek için giriş yapmalısınız.',
+    'admin' => 'Admin',
 
 
 ];

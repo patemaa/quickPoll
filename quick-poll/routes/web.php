@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PollController;
 
 Route::get('/', function () {
-    return view('index');
+    return view('index')->name('index');
+});
+
+Route::get('/deneme', function () {
+    return view('deneme');
 });
 
 Route::get('/polls', [PollController::class, 'index'])->name('polls.index');
