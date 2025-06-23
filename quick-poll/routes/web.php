@@ -9,16 +9,11 @@ Route::get('/', function () {
     return view('index')->name('index');
 });
 
-Route::get('/deneme', function () {
-    return view('deneme');
-});
-
 Route::get('/polls', [PollController::class, 'index'])->name('polls.index');
 Route::get('/polls/{slug}/result', [PollController::class, 'result'])->name('polls.result');
 Route::post('/polls/redirect', [PollController::class, 'redirect'])->name('polls.redirect');
 Route::get('/polls/{slug}', [PollController::class, 'show'])->name('polls.show');
 Route::post('/polls/{slug}/vote', [PollController::class, 'vote'])->name('polls.vote');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/polls/{slug}/update', [AdminController::class, 'update'])->name('polls.update');
     Route::post('/polls/{slug}/destroy', [AdminController::class, 'destroy'])->name('polls.destroy');
 });
+
 require __DIR__ . '/auth.php';
 
 

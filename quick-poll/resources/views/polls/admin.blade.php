@@ -40,7 +40,7 @@
 
                 <a href="/polls"
                    class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
-                    {{ __('poll.homepage') }}
+                    {{ __('poll.vote') }}
                 </a>
             </div>
 
@@ -74,7 +74,6 @@
                 }, 1000);
             </script>
         @endif
-
     </div>
 
     <script>
@@ -95,4 +94,5 @@
             });
         }
     </script>
+    <x-footer></x-footer>
 </x-app-layout>

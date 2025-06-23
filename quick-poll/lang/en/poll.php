@@ -54,4 +54,10 @@ return [
     'resent_verification_email' => 'Resend Verification Email',
     'vote_fail' => 'You must be logged in to vote.',
     'admin' => 'Admin',
+    'footer_info' => 'Quick and easy poll creation and voting platform.',
+    'pages' => 'Pages',
+    'social_media' => 'Social Media',
+    'contact' => 'Contact',
+    'phone_number' => 'Phone Number',
+    'rights_reserved' => 'All rights reserved.'
 ];

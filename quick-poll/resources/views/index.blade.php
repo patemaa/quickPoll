@@ -26,9 +26,10 @@
                 </button>
             </form>
         </div>
+        <x-footer></x-footer>
     </x-app-layout>
-
 @endauth
+
 @guest
     <x-guest-layout>
 
