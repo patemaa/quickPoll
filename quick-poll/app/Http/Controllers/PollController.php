@@ -93,11 +93,13 @@ class PollController extends Controller
     public function redirect(Request $request)
     {
         $url = $request->input('pollLink');
-
-        if (!filter_var($url, FILTER_VALIDATE_URL) || !in_array(parse_url($url, PHP_URL_HOST), ['127.0.0.1', 'localhost'])) {
+        $path = parse_url($url, PHP_URL_PATH);
+        $segments = explode('/', trim($path, '/'));
+        $slug = end($segments);
+        if (!$slug) {
             abort(404);
         }
 
-        return redirect($url);
+        return redirect()->route('polls.show', ['slug' => $slug]);
     }
 }

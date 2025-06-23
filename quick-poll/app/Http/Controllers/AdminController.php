@@ -16,6 +16,12 @@ use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+    public function dashboard()
+    {
+        $polls = Poll::latest()->get(); // tüm anketleri en yeniye göre ala
+
+        return view('dashboard', compact('polls'));
+    }
     /**
      * @return Factory|View|Application|object
      */

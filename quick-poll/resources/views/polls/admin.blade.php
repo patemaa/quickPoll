@@ -5,12 +5,13 @@
     <title>Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 p-6">
+<body class="bg-gray-900 p-6 text-white">
 
-<div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h1 class="text-xl font-bold mb-4">{{ __('poll.poll') }}</h1>
+<div class="max-w-xl mx-auto bg-gray-800 p-6 rounded-lg shadow">
 
-    <h5 class="text-xl font-bold mb-4">{{ __('poll.question:') }} {{ $poll->question }}</h5>
+    <h1 class="text-2xl font-bold mb-4">{{ __('poll.poll') }}</h1>
+
+    <h5 class="text-xl font-semibold mb-6">{{ __('poll.question:') }} {{ $poll->question }}</h5>
 
     @if ($errors->any())
         <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
@@ -24,56 +25,63 @@
 
     <form action="{{ route('polls.vote', $poll->id) }}" method="POST">
         @csrf
-        <div class="space-y-2 mb-4">
+
+        <div class="space-y-2 mb-6">
             @foreach ($poll->options as $option)
-                <div class="flex items-center">
-                    <ol>
-                        <li> ・ {{ $option->text }}</li>
-                    </ol>
+                <div class="bg-gray-700 px-4 py-2 rounded text-white">
+                    ・{{ $option->text }}
                 </div>
             @endforeach
         </div>
 
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-3 mb-4">
             <a href="{{ route('polls.edit', $poll->id) }}"
-               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('poll.edit') }}</a>
+               class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
+                {{ __('poll.edit') }}
+            </a>
 
             <button type="button" onclick="copyLink()"
-                    class=" bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
                 {{ __('poll.copy_link') }}
             </button>
 
             <a href="{{ route('polls.result', $poll->id) }}"
-               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('poll.vote_tracking') }}
+               class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
+                {{ __('poll.vote_tracking') }}
             </a>
 
             <a href="/"
-               class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 duration-300">{{ __('poll.homepage') }}</a>
+               class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
+                {{ __('poll.homepage') }}
+            </a>
         </div>
-        <p id="copy-msg" class="text-sm text-green-600 mt-2 hidden duration-300">{{ __('poll.link_copied') }}</p>
+
+        <p id="copy-msg" class="text-sm text-green-400 mt-2 hidden">{{ __('poll.link_copied') }}</p>
     </form>
 
     @if (session('success'))
-        <div class="text-green-700 bg-green-100 p-3 rounded mb-4 mt-5">
+        <div class="text-green-400 bg-green-900 p-3 rounded mb-4 mt-5">
             {{ session('success') }}
         </div>
     @endif
-    @if(session('success') || isset($success))
+
+    @if (session('success') || isset($success))
         <script>
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = "{{ route('polls.admin', $poll->id ?? '') }}";
             }, 1000);
         </script>
     @endif
 
     @if (session('update_success'))
-        <div class="text-green-700 bg-green-100 p-3 rounded mb-4 mt-5">
+        <div class="text-green-400 bg-green-900 p-3 rounded mb-4 mt-5">
             {{ session('update_success') }}
         </div>
     @endif
-    @if(session('update_success') || isset($update_success))
+
+    @if (session('update_success') || isset($update_success))
         <script>
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = "{{ route('polls.admin', $poll->id ?? '') }}";
             }, 1000);
         </script>
